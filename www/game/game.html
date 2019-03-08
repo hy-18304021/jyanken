@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    
+    <script>
+     
+     var sp;                      //動く画像の使用
+     var wincount=0;              //勝ちカウント 
+     var loscount=0;              //負けカウント
+      function jyanken(my){
+       var disc=Math.floor(Math.random() * 3);
+        var image_name     
+        var image_aiko;
+        var count;
+
+       clearInterval(sp);           //画像を止める
+
+        document.getElementById("aiko").style["display"] = "none";            //あいこ又は勝ち負け画像を消す
+        if(disc==0){
+		     image_name ="janken_gu.png";            //グー
+	        if(my==2){		                         //勝ち
+           wincount+=1;
+           count="勝ちは"+wincount+"回です";
+           image_aiko ="kati.png";
+           document.getElementById("win").innerHTML = count;
+           document.getElementById("aiko").src = "../images/" + image_aiko;
+           document.getElementById("aiko").style["display"] = "inline";
+		     }else if(my==1){                         //負け
+			     loscount+=1;
+           count="負けは"+loscount+"回です";
+           image_aiko ="make.png";
+           document.getElementById("los").innerHTML = count;
+           document.getElementById("aiko").src = "../images/" + image_aiko;
+           document.getElementById("aiko").style["display"] = "inline";
+		     }else{                                     //あいこ
+           image_aiko ="hiragana_01_a.png";
+           document.getElementById("aiko").src = "../images/" + image_aiko;
+           document.getElementById("aiko").style["display"] =  "inline";
+		        }
+	        }else if(disc==1){
+		       image_name ="janken_choki.png";          //チョキ
+	      	  if(my==0){
+		      	wincount+=1;
+            count="勝ちは"+wincount+"回です";
+            image_aiko ="kati.png";
+            document.getElementById("win").innerHTML = count;
+           document.getElementById("aiko").src = "../images/" + image_aiko;
+           document.getElementById("aiko").style["display"] = "inline";
+            }else if(my==2){
+					  loscount+=1;
+            count="負けは"+loscount+"回です";
+            image_aiko ="make.png";
+            document.getElementById("los").innerHTML = count;
+           document.getElementById("aiko").src = "../images/" + image_aiko;
+           document.getElementById("aiko").style["display"] = "inline";
+		       }else{
+		  		  image_aiko ="hiragana_01_a.png";
+            document.getElementById("aiko").src = "../images/" + image_aiko;
+            document.getElementById("aiko").style["display"] = "inline";
+		        }
+	       }else{
+		      image_name ="janken_pa.png";      //ぱー
+		      if(my==1){
+		       wincount+=1;
+           count="勝ちは"+wincount+"回です";
+           image_aiko ="kati.png";
+           document.getElementById("win").innerHTML = count;
+           document.getElementById("aiko").src = "../images/" + image_aiko;
+           document.getElementById("aiko").style["display"] = "inline";
+		      }else if(my==0){
+			      loscount+=1;
+            count="負けは"+loscount+"回です";
+            image_aiko ="make.png";
+           document.getElementById("los").innerHTML = count;
+           document.getElementById("aiko").src = "../images/" + image_aiko;
+           document.getElementById("aiko").style["display"] = "inline";
+		       }else{
+		      	image_aiko ="hiragana_01_a.png";
+            document.getElementById("aiko").src = "../images/" + image_aiko;
+            document.getElementById("aiko").style["display"] = "inline";
+		       }
+          }
+
+          document.getElementById("jan").src = "../images/" + image_name;
+          document.getElementById("jan").style["display"] = "inline";	
+
+          if(wincount==5){
+            location.href = "win.html" ;
+          }else if(loscount==5){
+            location.href = "los.html" ;
+          }
+          setTimeout(gcp, 250);      //0.25秒後にgcp起動
+       }
+
+ function gcp(){                  //動く画像
+   var a=0;
+   var array = ["janken_gu.png","janken_choki.png","janken_pa.png"];
+    var loopup=function(){
+     document.getElementById('jan').src = "../images/" +array[a++];
+     document.getElementById("jan").style["display"] = "inline";	
+      if(a > 2){
+       a = 0;
+      }
+    }
+       sp=setInterval(loopup, 200);       //インターバル
+  }
+
+  function akirameru(){               //諦め
+    var rat=confirm("諦めますか？");
+    if(rat==true){
+    location.href = "los.html" ;
+    }
+  }
+
+    </script>
+    <style>
+      body{
+        background-image: url("../images/omikuji-bg.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+
+      #akirame{
+          position: absolute;
+          margin-left:-60px;
+          width: 65%;
+      }
+
+       #aite{
+          position: absolute;
+          bottom: 275px;
+          width: 100%;
+       }
+        #bottombar {
+          position: absolute;
+          bottom: 30px;
+          width: 100%;
+        }
+
+       #aik{
+          position: absolute;
+          bottom: 130px;
+          width: 100%;  
+        }
+
+        img.example1 {
+          width: 100px;
+          height: 100px;
+        }
+
+        img.example2{
+          width: 250px;
+          height: 250px;
+        }
+
+        #wincount{
+          position: absolute;
+          bottom: 245px;
+          width: 50%;  
+          font-size: 25px;
+          font-family:'HGS創英角ﾎﾟｯﾌﾟ体';
+        }
+        
+        #los{
+          position: absolute;
+          bottom: 245px;
+          font-size: 25px;                      
+          font-family:'HGS創英角ﾎﾟｯﾌﾟ体';
+        }
+
+    </style>
+</head>
+<body  onload="gcp()">            <!--起動と同時にgcp()開始-->
+ <div id="akirame">
+   <a><img id="akirame"  src="../images/akirame.png"
+   onclick="akirameru()"></a>       <!--諦め-->
+ </div>
+ <div id="aite">
+   <a><img id="jan"   style="display : none;"
+   class="example2"></a>            <!--相手のグチパ-->
+ </div>
+
+ <!--勝ち回数表示-->
+ <div id="wincount">
+    <a id="win">勝ちは0回です</a>
+ </div>
+
+ <!--負け回数表示-->
+ <div id="loscount">
+   <a id="los">負けは0回です</a>
+ </div>
+ 
+ <div id="aik">
+  <img id="aiko" style="display : none;"  >
+ </div>     <!--あいこ表示用-->
+ 
+ <!--自分のグチパ-->
+ <div id="bottombar">
+   <img id="button" src="../images/janken_gu.png"
+   class="example1"  onclick="jyanken(0)">
+   <img id="button" src="../images/janken_choki.png" 
+   class="example1"  onclick="jyanken(1)">
+   <img id="button" src="../images/janken_pa.png" 
+   class="example1"  onclick="jyanken(2)">
+ </div>
+</body>
+</html>

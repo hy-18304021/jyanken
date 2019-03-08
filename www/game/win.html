@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <script src="components/loader.js"></script>
+    <style>
+      body{
+      background-image: url("../images/omikuji-bg.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      }
+      #bottombar {
+         position: absolute;
+         bottom: 50px;
+         width: 100%;
+        }
+        #win{
+         position: absolute;
+         width: 100%;
+         bottom: 190px;
+        }
+    </style>
+</head>
+<body>
+ 
+ <!--勝ち画像表示-->
+ <div id="win">
+    <img id="winn" src="../images/win.png" >
+ </div>
+
+<!--戻る-->
+ <div id="bottombar">
+   <img id="button" src="../images/return.png" onclick="location.href='../index.html'">
+ </div>
+</body>
+</html>
